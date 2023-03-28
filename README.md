@@ -8,9 +8,9 @@ Approach is to insert all data into Elasticsearch and then query (using match_li
 to get different entries for the same customers.
 
 After deduplication save the customer to the new data store keeping the original legacy customer ids for 
-exhaustive information of customer across all entries.
+exhaustive information of customers across all entries.
 
-Uses Spring batch Jobs each to 
+Uses Spring batch Jobs one each to 
 1. generate dummy data of 5 million records
 2. add all records to Elasticsearch
 3. deduplicate the customer records and push to new data store.
@@ -19,7 +19,7 @@ Using Spring batch give ability to resume Job in case of failures.
 
 ## Stats
 1. Takes 4m53s649ms to generate 5 million customers
-2. Takes 15m32s17ms for 5million records.
+2. Takes 15m32s17ms for 5million records to push to elasticsearch.
 3. Process 10K records per minute. At this speed it will take 8 hours to complete all 5 million customers.
 
 ### Configuration
@@ -51,5 +51,6 @@ java -jar -Dspring.profiles.active=dedup target/mcd-0.0.1-SNAPSHOT.jar
 ## Future work
 1. Search query ES can be improved better and faster result. Right now it is using match_like_this. 
 2. Use Spring batch Partitioning to distribute deduplication tasks on other worker nodes.
+3. Run tasks again after the first migration with parameterized ItemReader.
 
 
