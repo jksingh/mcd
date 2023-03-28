@@ -49,7 +49,7 @@ java -jar -Dspring.profiles.active=dedup target/mcd-0.0.1-SNAPSHOT.jar
 ```
 
 ## Future work
-Search query ES can be improved better and faster result. Right now it is using match_like_this.
-Use Spring batch Partitioning to distribute deduplication tasks on other worker nodes.
+1. Search query ES can be improved better and faster result. Right now it is using match_like_this. 
+2. Use Spring batch Partitioning to distribute deduplication tasks on other worker nodes.
 
 
